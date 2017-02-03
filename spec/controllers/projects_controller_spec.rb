@@ -56,6 +56,13 @@ RSpec.describe ProjectsController, type: :controller do
       expect(Project.find(project.to_param).status).to eq("concluido")
     end
 
+    it "should return status ok" do
+      project = Project.create! valid_attributes
+
+      put :done, params: {id: project.to_param}
+      expect(response).to have_http_status(:ok)
+    end
+
   end
 
 end
