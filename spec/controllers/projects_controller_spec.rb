@@ -38,4 +38,14 @@ RSpec.describe ProjectsController, type: :controller do
 
   end
 
+  describe "DELETE #destroy" do
+    it "destroys the requested project" do
+      project = Project.create! valid_attributes
+
+      delete :destroy, params: {id: project.to_param}
+      expect(Project.find(project.to_param).archived).to be true
+    end
+
+  end
+
 end
