@@ -35,6 +35,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.done
     @project.save
+
+    render json: { status: :ok, message: "Project done successfully" }
   end
 
   private
