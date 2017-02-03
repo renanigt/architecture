@@ -1,24 +1,53 @@
-# README
+# API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Add a Project:
+JSON Format:
+```json
+{
+  "project": {
+    "name": "Project Name",
+    "client": "Client Name",
+    "grades": [
+      {"grade": 8},
+      {"grade": 10}
+    ]
+  }
+}
+```
+`POST` to: `http://localhost:3000/projects/`
 
-Things you may want to cover:
+## Mark a Project as done
+`PUT` to: `http://localhost:3000/projects/::id/done`
 
-* Ruby version
+## Update a Project
+JSON Format:
+```json
+{
+  "project": {
+    "name": "New Project Name",
+    "client": "New Client Name"
+  }
+}
+```
+`PUT` to: `http://localhost:3000/projects/::id`
 
-* System dependencies
+## Archive a Project
+`DELETE` to: `http://localhost:3000/projects/::id`
 
-* Configuration
+## List all not archived Projects
+`GET` to: `http://localhost:3000/projects`
 
-* Database creation
+## Create a Grade
+JSON Format:
+```json
+{
+  "grade": {
+    "grade": 7,
+    "project_id": 14 
+  }
+}
+```
+`POST` to: `http://localhost:3000/grades/`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Archive a Grade
+`DELETE` to: `http://localhost:3000/grades/::id`
