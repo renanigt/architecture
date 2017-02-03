@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  scope "api" do
     resources :projects do
       member do
         put "done"
@@ -6,4 +8,6 @@ Rails.application.routes.draw do
     end
 
     resources :grades
+  end
+  
 end

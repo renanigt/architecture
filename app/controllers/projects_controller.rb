@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:done, :update, :destroy]
 
   def index
-    @projects = Project.where(archived: false)
+    @projects = Project.where(archived: [false, nil])
     render json: @projects, status: :ok
   end
 
