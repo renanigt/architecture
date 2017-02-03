@@ -48,4 +48,14 @@ RSpec.describe ProjectsController, type: :controller do
 
   end
 
+  describe "PUT #done" do
+    it "change the project to done" do
+      project = Project.create! valid_attributes
+
+      put :done, params: {id: project.to_param}
+      expect(Project.find(project.to_param).status).to eq("concluido")
+    end
+
+  end
+
 end
