@@ -37,7 +37,7 @@ JSON Format:
 ## List all not archived Projects
 `GET` to: `http://localhost:3000/projects`
 
-## Create a Grade
+## Add a Grade
 JSON Format:
 ```json
 {
