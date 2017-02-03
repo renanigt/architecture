@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
-
-  scope "api" do
-    resources :projects do
-      member do
-        put "done"
-      end
+  resources :projects do
+    member do
+      put "done"
     end
-
-    resources :grades
   end
-  
+
+  resources :grades
 end
