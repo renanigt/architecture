@@ -11,8 +11,6 @@ RSpec.describe GradesController, type: :controller do
 
 
       it "creates a new Grade" do
-        # project = Project.create! project_valid_attributes
-
         post :create, format: :json, params: { grade: {grade: 8, project_id: project.to_param} }
         expect(Grade.count).to eq(1)
       end
