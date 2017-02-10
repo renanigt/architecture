@@ -1,5 +1,8 @@
 class Project < ApplicationRecord
+  validates :name, presence: true
+
   has_many :grades, :dependent => :destroy
+  
   accepts_nested_attributes_for :grades
 
   def done
