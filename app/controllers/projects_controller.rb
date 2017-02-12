@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.archive
+    @project.archive!
     @project.save
     
     render json: { status: :ok, message: "Project successfully archived" }
@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
   def done
     @project = Project.find(params[:id])
-    @project.done
+    @project.done!
     @project.save
 
     render json: { status: :ok, message: "Project done successfully" }

@@ -12,7 +12,7 @@ class GradesController < ApplicationController
   end
 
   def destroy
-    @grade.archive
+    @grade.archive!
     @grade.save
     
     render json: { status: :ok, message: "Grade successfully archived" }

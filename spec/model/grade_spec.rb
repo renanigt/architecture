@@ -7,7 +7,7 @@ RSpec.describe Grade do
   describe "#archive" do
 
     it "should be archived" do
-      grade.archive
+      grade.archive!
       expect(grade.archived).to be true
       expect(grade.archived_date).not_to be_nil
     end

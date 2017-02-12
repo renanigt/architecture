@@ -7,7 +7,7 @@ RSpec.describe Project do
   describe "#done" do
     
     it "should has status 'concluido'" do
-      project.done
+      project.done!
       expect(project.status).to eq("concluido")
       expect(project.conclusion_date).not_to be_nil
     end
@@ -17,7 +17,7 @@ RSpec.describe Project do
   describe "#archive" do
 
     it "should be archived" do
-      project.archive
+      project.archive!
       expect(project.archived).to be true
       expect(project.archived_date).not_to be_nil
     end
