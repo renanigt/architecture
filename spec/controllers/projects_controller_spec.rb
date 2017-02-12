@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ProjectsController, type: :controller do
 
   let(:valid_attributes) { { name: "Project 1", client: "Renan" } }
+  let(:invalid_attributes) { { name: "", client: "Renan" } }
   let(:new_attributes) { { name: "Project Updated", client: "Renan" } }
 
   describe "GET #index" do
@@ -32,6 +33,15 @@ RSpec.describe ProjectsController, type: :controller do
       it "returns status created" do
         post :create, format: :json, params: { project: valid_attributes }
         expect(response).to have_http_status(:created)
+      end
+
+    end
+
+    context "with invalid params" do
+
+      it "returns status unprocessable_entity" do
+        post :create, format: :json, params: { project: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
     end

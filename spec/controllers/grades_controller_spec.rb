@@ -2,27 +2,37 @@ require 'rails_helper'
 
 RSpec.describe GradesController, type: :controller do
 
-  let(:valid_attributes) { { grade: 8 } }
-  let(:project_valid_attributes) { { name: "Project 1", client: "Renan" } }
+  let(:project) { Project.create!(name: "Project 1", client: "Renan") }
+  let(:valid_attributes) { { grade: 8, project_id: project.to_param } }
+  let(:invalid_attributes) { { grade: 8, project_id: nil } }
 
   describe "POST #create" do
-    let(:project) { Project.create! project_valid_attributes }
+    
     context "with valid params" do
 
 
       it "creates a new Grade" do
-        post :create, format: :json, params: { grade: {grade: 8, project_id: project.to_param} }
+        post :create, format: :json, params: { grade: valid_attributes }
         expect(Grade.count).to eq(1)
       end
 
       it "returns @grade in json format" do
-        post :create, format: :json, params: { grade: { grade: 8, project_id: project.to_param } }
+        post :create, format: :json, params: { grade: valid_attributes }
         expect(response.body).to eq(assigns(:grade).to_json)
       end
 
       it "returns status created" do
         post :create, format: :json, params: { grade: valid_attributes }
         expect(response).to have_http_status(:created)
+      end
+
+    end
+
+    context "with valid params" do
+
+      it "returns status unprocessable_entity" do
+        post :create, format: :json, params: { grade: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
     end
