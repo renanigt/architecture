@@ -44,6 +44,8 @@ GEM
     concurrent-ruby (1.0.4)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
     ffi (1.9.17)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -143,6 +145,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  factory_girl
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
