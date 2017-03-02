@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :projects do
+  resources :projects, only: [:index, :create, :update, :destroy] do
     member do
       put "done"
     end
   end
 
-  resources :grades
+  resources :grades, only: [:create, :update, :destroy]
 end

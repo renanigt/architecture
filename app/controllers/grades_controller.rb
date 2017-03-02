@@ -1,11 +1,19 @@
 class GradesController < ApplicationController
-  before_action :set_grade, only: [:done, :update, :destroy]
+  before_action :set_grade, only: [:update, :destroy]
 
   def create
     @grade = Grade.new(grade_params)
 
     if @grade.save
       render json: @grade, status: :created
+    else
+      render json: @grade.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @grade.update(grade_params)
+      render json: @grade, status: :ok
     else
       render json: @grade.errors, status: :unprocessable_entity
     end
