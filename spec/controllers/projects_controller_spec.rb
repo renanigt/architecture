@@ -81,9 +81,10 @@ RSpec.describe ProjectsController, type: :controller do
     context "with valid params" do
 
       it "should update project" do
-        post :update, format: :json, params: { id: project.id, project: { name: "New Project Name" } }
+        post :update, format: :json, params: { id: project.id, project: new_attributes }
         project.reload
-        expect(project.name).to eq("New Project Name")
+        expect(project.name).to eq("Project Updated")
+        expect(project.client).to eq("Renan")
       end
 
     end
