@@ -41,7 +41,7 @@ RSpec.describe GradesController, type: :controller do
   describe "DELETE #destroy" do
 
     it "destroys the requested grade" do
-      grade = Grade.create! valid_attributes
+      grade = Grade.create!(valid_attributes)
 
       delete :destroy, params: {id: grade.to_param}
       expect(Grade.find(grade.to_param).archived).to be true

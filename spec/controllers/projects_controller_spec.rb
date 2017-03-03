@@ -50,7 +50,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested project" do
-      project = Project.create! valid_attributes
+      project = Project.create!(valid_attributes)
 
       delete :destroy, params: {id: project.to_param}
       expect(Project.find(project.to_param).archived).to be true
@@ -60,17 +60,32 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "PUT #done" do
     it "change the project to done" do
-      project = Project.create! valid_attributes
+      project = Project.create!(valid_attributes)
 
       put :done, params: {id: project.to_param}
       expect(Project.find(project.to_param).status).to eq("concluido")
     end
 
     it "should return status ok" do
-      project = Project.create! valid_attributes
+      project = Project.create!(valid_attributes)
 
       put :done, params: {id: project.to_param}
       expect(response).to have_http_status(:ok)
+    end
+
+  end
+
+  describe "PUT #update" do
+    let(:project) { Project.create!(valid_attributes) }
+
+    context "with valid params" do
+
+      it "should update project" do
+        post :update, format: :json, params: { id: project.id, project: { name: "New Project Name" } }
+        project.reload
+        expect(project.name).to eq("New Project Name")
+      end
+
     end
 
   end
