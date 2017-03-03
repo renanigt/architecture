@@ -15,11 +15,6 @@ RSpec.describe GradesController, type: :controller do
         expect(Grade.count).to eq(1)
       end
 
-      it "returns @grade in json format" do
-        post :create, format: :json, params: { grade: valid_attributes }
-        expect(response.body).to eq(assigns(:grade).to_json)
-      end
-
       it "returns status created" do
         post :create, format: :json, params: { grade: valid_attributes }
         expect(response).to have_http_status(:created)

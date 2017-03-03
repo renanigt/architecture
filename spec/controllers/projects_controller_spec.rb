@@ -25,11 +25,6 @@ RSpec.describe ProjectsController, type: :controller do
         expect(Project.count).to eq(1)
       end
 
-      it "returns @project in json format" do
-        post :create, format: :json, params: { project: valid_attributes }
-        expect(response.body).to eq(assigns(:project).to_json)
-      end
-
       it "returns status created" do
         post :create, format: :json, params: { project: valid_attributes }
         expect(response).to have_http_status(:created)
